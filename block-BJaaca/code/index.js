@@ -14,7 +14,7 @@ character = {characterName : "Arya"}
 
 let age = 20;
 
-character["character-age"] = 19;
+character["character-age"] = age;
 
 // - Add a new key `sur name` with the value of the surname of the character i.e "Stark". (Don't remove the space between `sur` and `name`)
 
@@ -41,7 +41,7 @@ character.greet();
 //  - Change the method `greet` to now alert `She is [NAME HERE] and her title is [TITLE HERE]`.
 
 character.greet = function() {
-    alert `She is ${character.characterName} and her title is ${character.title}`;
+    alert (`She is ${character.characterName} and her title is ${character.title}`) ;
 }
 
 // - Check by calling `greet` and see if the message changed or not.
@@ -77,3 +77,5 @@ console.log(character[42]);
 character.totalSeasons = 1+2+3+2;
 
 // - Access the value of the key `totalSeason` (it should be 8)
+
+console.log(character.totalSeasons);
