@@ -10,17 +10,13 @@ let person2 = person;
 
 person.firstName = 'Arya';
 
-console.log(person2.firstName); // output
-console.log(person.firstName); // output
-console.log(person.lastName); // output
-console.log(person == person2); // output
-console.log(person === person2); // output
-console.log(person.lastName === person2.lastName); // output
-```
-
-2. Write the output with reason:
-
-```js
+console.log(person2.firstName); // Arya - as the object is been copied they point to a same memory location
+console.log(person.firstName); // Arya - as the object is been copied they point to a same memory location
+console.log(person.lastName); // Doe - as the object is been copied they point to a same memory location
+console.log(person == person2); // true - as the object is been copied they point to a same memory location
+console.log(person === person2); // true
+console.log(person.lastName === person2.lastName); // true
+Write the output with reason:
 let person = {
   firstName: 'John',
   lastName: 'Doe',
@@ -37,22 +33,18 @@ let personTwo = { ...person };
 person.firstName = 'Arya';
 person.city = 'Navada';
 
-console.log(personTwo.firstName); // output
-console.log(person.firstName); // output
-console.log(personTwo.lastName); // output
-console.log(person.firstName === personTwo.firstName); // output
-console.log(person == personTwo); // output
-console.log(person === personTwo); // output
-console.log(person.address === personTwo.address); // output
-console.log(person.address == personTwo.address); // output
-console.log(personTwo.address.city); // output
-console.log(person.address.city); // output
-console.log(person.address.city == personTwo.address.city); // output
-```
-
-3. Write the output with reason:
-
-```js
+console.log(personTwo.firstName); // John - as the object is been cloned it has a different memory location
+console.log(person.firstName); // Arya - as the object is been cloned it has a different memory location
+console.log(personTwo.lastName); // Doe - as the object is been cloned it has a different memory location
+console.log(person.firstName === personTwo.firstName); // false -  - as the object is been cloned it has a different memory location
+console.log(person == personTwo); // false
+console.log(person === personTwo); // false
+console.log(person.address === personTwo.address); // true - as the object is been cloned it has a different memory location but it contains shallow cloning where address is not been clones
+console.log(person.address == personTwo.address); // true
+console.log(personTwo.address.city); // Navada
+console.log(person.address.city); // Navada
+console.log(person.address.city == personTwo.address.city); // true
+Write the output with reason:
 let person = {
   firstName: 'John',
   lastName: 'Doe',
@@ -69,22 +61,18 @@ let personTwo = { ...person, address: { ...person.address } };
 person.firstName = 'Arya';
 person.city = 'Navada';
 
-console.log(personTwo.firstName); // output
-console.log(person.firstName); // output
-console.log(personTwo.lastName); // output
-console.log(person.firstName === personTwo.firstName); // output
-console.log(person == personTwo); // output
-console.log(person === personTwo); // output
-console.log(person.address === personTwo.address); // output
-console.log(person.address == personTwo.address); // output
-console.log(personTwo.address.city); // output
-console.log(person.address.city); // output
-console.log(person.address.city == personTwo.address.city); // output
-```
-
-4. Clone the `blogs` variable into a new variable named `clonedBlogs`
-
-```js
+console.log(personTwo.firstName); // John - as the object is been cloned it has a different memory location
+console.log(person.firstName); // Arya - as the object is been cloned it has a different memory location
+console.log(personTwo.lastName); // Doe - as the object is been cloned it has a different memory location
+console.log(person.firstName === personTwo.firstName); // false -  - as the object is been cloned it has a different memory location
+console.log(person == personTwo); // false
+console.log(person === personTwo); // false
+console.log(person.address === personTwo.address); // false - as the object is been cloned it has a different memory location also it contains deep cloning where address is been cloned
+console.log(person.address == personTwo.address); // false
+console.log(personTwo.address.city); // San Jose
+console.log(person.address.city); // Navada
+console.log(person.address.city == personTwo.address.city); // false
+Clone the blogs variable into a new variable named clonedBlogs
 let blogs = [
   {
     id: 1,
@@ -104,11 +92,8 @@ let blogs = [
 ];
 
 // Your code goes here
-```
-
-5. Clone the `question` variable into a new variable named `questionClone`
-
-```js
+let clonedBlogs = [{...blogs[0]}, {...blogs[1]}, {...blogs[2]}];
+Clone the question variable into a new variable named questionClone
 var questions = [
   {
     prompt: 'Why is the sky blue?',
@@ -129,11 +114,8 @@ var questions = [
 ];
 
 // Your code goes here
-```
-
-6. Clone the `allBlogs` variable into a new variable named `allBlogsClone`
-
-```js
+let questionClone = [{...questions[0], responses: [...questions[0].response]}, {...questions[1], responses: [...questions[1].response]}];
+Clone the allBlogs variable into a new variable named allBlogsClone
 var allBlogs = {
   id: 1,
   title: 'Alamofire JSON Serialization',
@@ -156,11 +138,8 @@ var allBlogs = {
 };
 
 // Your code goes here
-```
-
-7. Clone the `person` variable into a new variable named `clonedPerson`
-
-```js
+let allBlogsClone = {...allBlogs, author: {...allBlogs.author}, comments: [{...allBlogs.comments[0]}, {...allBlogs.comments[1]}]};
+Clone the person variable into a new variable named clonedPerson
 let person = [
   {
     input: { name: 'Ryan' },
@@ -189,13 +168,11 @@ let person = [
 ];
 
 // Your code goes here
-```
-
-8. Write a function named `cloneObject` that accepts an object and returns the clone of the object
-
-```js
-function cloneObject() {
+let clonedPerson = JSON.parse(JSON.stringify(person));
+Write a function named cloneObject that accepts an object and returns the clone of the object
+function cloneObject(obj) {
   // your code
+  return JSON.parse(JSON.stringify(person));
 }
 
 // Run the test below to check your function
@@ -230,4 +207,5 @@ console.log(
     person == clonedPerson ? `not clone` : `cloned successfully 😁👑`
   }`
 );
+
 ```
